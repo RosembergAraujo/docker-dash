@@ -1,10 +1,16 @@
 package com.rosemberg_araujo.docker_dash.controllers;
 
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.github.dockerjava.api.model.Image;
 import com.rosemberg_araujo.docker_dash.services.DockerService;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/images")
@@ -16,32 +22,33 @@ public class DockerImagesController {
     }
 
     @GetMapping("")
-    public List<Image> listImages(){
+    public List<Image> listImages() {
         return dockerService.listImages();
     }
 
     @GetMapping("/filter")
-    public List<Image> listImagesFilteringByImageName(@RequestParam(required = false, defaultValue = "") String filterName){
+    public List<Image> listImagesFilteringByImageName(
+            @RequestParam(required = false, defaultValue = "") String filterName) {
         return dockerService.listImagesFilteringByImageName(filterName);
     }
 
     @PostMapping("/{id}/start")
-    public void startContainer(@PathVariable String id){
+    public void startContainer(@PathVariable String id) {
         dockerService.startContainer(id);
     }
 
     @PostMapping("/{id}/stop")
-    public void stopContainer(@PathVariable String id){
+    public void stopContainer(@PathVariable String id) {
         dockerService.stopContainer(id);
     }
 
     @PostMapping("/{id}/remove")
-    public void removeContainer(@PathVariable String id){
+    public void removeContainer(@PathVariable String id) {
         dockerService.removeContainer(id);
     }
 
     @PostMapping("/{imageName}/create")
-    public void createContainer(@PathVariable String imageName){
+    public void createContainer(@PathVariable String imageName) {
         dockerService.createContainer(imageName);
     }
 

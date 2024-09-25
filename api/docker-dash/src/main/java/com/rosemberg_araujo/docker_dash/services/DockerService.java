@@ -1,11 +1,12 @@
 package com.rosemberg_araujo.docker_dash.services;
 
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.github.dockerjava.api.DockerClient;
 import com.github.dockerjava.api.model.Container;
 import com.github.dockerjava.api.model.Image;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class DockerService {
