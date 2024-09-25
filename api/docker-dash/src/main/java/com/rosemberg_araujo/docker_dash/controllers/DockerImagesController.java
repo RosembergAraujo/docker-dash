@@ -3,8 +3,6 @@ package com.rosemberg_araujo.docker_dash.controllers;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,25 +29,4 @@ public class DockerImagesController {
             @RequestParam(required = false, defaultValue = "") String filterName) {
         return dockerService.listImagesFilteringByImageName(filterName);
     }
-
-    @PostMapping("/{id}/start")
-    public void startContainer(@PathVariable String id) {
-        dockerService.startContainer(id);
-    }
-
-    @PostMapping("/{id}/stop")
-    public void stopContainer(@PathVariable String id) {
-        dockerService.stopContainer(id);
-    }
-
-    @PostMapping("/{id}/remove")
-    public void removeContainer(@PathVariable String id) {
-        dockerService.removeContainer(id);
-    }
-
-    @PostMapping("/{imageName}/create")
-    public void createContainer(@PathVariable String imageName) {
-        dockerService.createContainer(imageName);
-    }
-
 }
